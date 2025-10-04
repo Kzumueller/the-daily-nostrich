@@ -1,0 +1,27 @@
+.mastHead {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--text-dark);
+  padding-bottom: 8px;
+}
+
+.mastHead__title {
+  font-family: Chomsky, serif;
+  font-size: 6rem;
+}
+
+.mastHead__date {
+  font-family: Chomsky, serif;
+}
+
+@media (max-width: 669px) {
+  .mastHead__title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 670px) {
+  .mastHead__title {
+    font-size: 6rem;
+  }
+}

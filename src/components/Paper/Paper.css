@@ -1,0 +1,33 @@
+.paper__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.paper {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: var(--parchment);
+}
+
+.paper__border {
+  display: block;
+  height: 8px;
+}
+
+.paper__border--top {
+  background: linear-gradient(-45deg, var(--parchment) 4px, transparent 0), linear-gradient(45deg, var(--parchment) 4px, transparent 0);
+  background-repeat: repeat-x;
+  background-size: 8px 8px;
+  width: 100%;
+}
+
+.paper__border--bottom {
+  background: linear-gradient(135deg, var(--parchment) 4px, transparent 0), linear-gradient(-135deg, var(--parchment) 4px, transparent 0);
+  background-repeat: repeat-x;
+  background-size: 8px 8px;
+  width: 100%;
+}

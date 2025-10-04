@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "Chomsky";
+  src:
+      local("Chomsky"),
+      url("Chomsky.otf") format("opentype");
+}

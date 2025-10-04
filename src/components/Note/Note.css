@@ -1,0 +1,42 @@
+.note {
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  word-break: break-all;
+}
+
+.note__author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.note__authorPicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  filter: sepia(100%);
+}
+
+.note__media {
+  object-fit: contain;
+  filter: sepia(100%);
+}
+
+.note__authorPicture:hover, .note__media:hover {
+  filter: none;
+}
+
+@media (max-width: 670px) {
+  .note {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .note__media {
+    width: 100%
+  }
+}

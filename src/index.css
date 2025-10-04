@@ -1,0 +1,46 @@
+:root {
+  --parchment: #ebd5b3;
+  --mahogany: #432a29;
+  --text-dark: #111;
+  --text-light: #dde;
+}
+
+* {
+  color: var(--text-dark);
+  box-sizing: border-box;
+  font-size: 1.1rem;
+  font-family: "Courier 10 Pitch", serif;
+}
+
+body {
+  margin: 0;
+  padding: 0
+}
+
+input, textarea {
+  padding: 8px;
+  border-radius: 4px;
+  background: var(--parchment);
+  border: 1px solid black;
+  outline: none;
+}
+
+button {
+  width: fit-content;
+  padding: 8px;
+  background: var(--mahogany);
+  color: var(--text-light);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  color: #ccc;
+  background: #999;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  color: white
+}
