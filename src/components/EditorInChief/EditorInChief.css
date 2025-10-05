@@ -1,5 +1,13 @@
 .editorInChief {
   display: flex;
   justify-content: flex-start;
-  padding-left: 8px;
+  padding-left: 16px;
+  padding-bottom: 8px;
+}
+
+@media (max-width: 670px) {
+  .editorInChief {
+    padding-left: 8px;
+    padding-bottom: 0;
+  }
 }

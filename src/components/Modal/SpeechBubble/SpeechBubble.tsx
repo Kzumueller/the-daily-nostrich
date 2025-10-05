@@ -1,4 +1,4 @@
-import {type ReactNode, useLayoutEffect, useMemo, useRef} from "react";
+import { type ReactNode, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import './SpeechBubble.css'
 
 interface Props {
@@ -11,7 +11,9 @@ const minMargin = 16
 
 /** A type of modal to confer information that wouldn't be printed in our simulated paper */
 export const SpeechBubble = ({ children, left, right }: Props) => {
-  if (left === right) console.warn('SpeechBubble ought to have either `left` or `right` set to true');
+  useEffect(() => {
+    if (left === right) console.warn('SpeechBubble ought to have either `left` or `right` set to true');
+  }, [left, right])
 
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -20,8 +22,8 @@ export const SpeechBubble = ({ children, left, right }: Props) => {
 
     // dynamic margins work better with round containers
     const boundingClient = contentRef.current?.getBoundingClientRect();
-    const marginX = (boundingClient?.width ?? 0) / 5;
-    const marginY = (boundingClient?.height ?? 0) / 5;
+    const marginX = (boundingClient?.width ?? 0) / 4;
+    const marginY = (boundingClient?.height ?? 0) / 4;
     contentRef.current.style.margin = `${Math.max(minMargin, marginY)}px ${Math.max(minMargin, marginX)}px`;
   }, []);
 

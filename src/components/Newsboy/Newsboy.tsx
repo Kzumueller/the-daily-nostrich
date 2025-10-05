@@ -12,13 +12,13 @@ export const Newsboy = () => {
   const [latestNote] = useAllNotes();
   const [firstPrintedNote] = usePrintedNotes();
 
+  /** whether the first rendered note is the latest one available */
   const upToDate = useMemo(
     () => latestNote?.id === firstPrintedNote?.id,
     [firstPrintedNote?.id, latestNote?.id]
   );
 
-  console.log({latestNote, firstPrintedNote});
-
+  /** prints the latest notes and scrolls to top with a little, giving the list time to update */
   const update = useCallback(() => {
     dispatch(printLatest());
 

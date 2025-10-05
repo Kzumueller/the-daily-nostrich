@@ -9,6 +9,7 @@ export const Page = () => {
   const notes = usePrintedNotes();
 
   if (notes.length === 0) {
+    /** Loading animation */
     return <ModalContainer>
       <SpeechBubble left>
         This will take but a moment.

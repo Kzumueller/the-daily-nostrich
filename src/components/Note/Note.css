@@ -29,6 +29,10 @@
   filter: sepia(100%)
 }
 
+.note__timestamp {
+  font-size: .8rem;
+}
+
 .note__media {
   object-fit: contain;
   max-width: 100%;

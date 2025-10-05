@@ -1,51 +1,43 @@
-import {createSlice} from "@reduxjs/toolkit";
-import type {PayloadAction} from "@reduxjs/toolkit";
-import {NDKKind, type NDKTag, NDKUser} from "@nostr-dev-kit/ndk";
-
-export type SimpleUser = Pick<NDKUser, "pubkey" | "profile">
-
-export interface SimpleNote {
-  created_at?: number;
-  content: string;
-  tags: NDKTag[];
-  kind: NDKKind;
-  id: string;
-  sig?: string;
-  pubkey: string;
-  signatureVerified?: boolean;
-  author: SimpleUser;
-}
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import uniqby from "lodash.uniqby"
+import type { RichNote } from "./RichNote.ts";
 
 export interface NotesState {
-  allNotes: SimpleNote[];
-  printedNotes: SimpleNote[];
+  allNotes: RichNote[];
+  printedNotes: RichNote[];
 }
 
-export type NoteInput = (SimpleNote | null)[]
+export type NoteInput = (RichNote | null)[]
 
 const initialState: NotesState = {
   allNotes: [],
   printedNotes: []
 };
 
-const filterNotes = (notes: NoteInput) => notes.filter(note => !!note)
+/** removes nulls and deduplicates the given list by id */
+const filterNotes = (notes: NoteInput) => uniqby(notes.filter(note => !!note), 'id')
 
-const sortNotes = (left: SimpleNote, right: SimpleNote) => (left?.created_at ?? 0) < (right?.created_at ?? 0) ? 1 : -1
+/** sorts by created_at desc */
+const sortNotes = (left: RichNote, right: RichNote) => (left?.created_at ?? 0) < (right?.created_at ?? 0) ? 1 : -1
 
 export const notesSlice = createSlice({
   name: "notes",
   initialState,
   reducers: {
+    /** sets allNotes, filtered, deduplicated, and sorted */
     setNotes: (state, action: PayloadAction<NoteInput>) => {
-      state.allNotes = Array.from(new Set(filterNotes(action.payload))).sort(sortNotes);
+      state.allNotes = filterNotes(action.payload).sort(sortNotes);
+      console.log('set Notes', filterNotes(action.payload).sort(sortNotes))
     },
+    /** Adds the given payload to allNotes, filters and sorts */
     addNotes: (state, action: PayloadAction<NoteInput>) => {
-      console.log("addedNotes", action.payload);
-      state.allNotes = Array.from(new Set([
-        ...filterNotes(action.payload),
+      state.allNotes = filterNotes([
+        ...action.payload,
         ...state.allNotes
-      ])).sort(sortNotes);
+      ]).sort(sortNotes);
     },
+    /** moves allNotes to printedNotes, causing the list to update */
     printLatest: (state) => {
       state.printedNotes = state.allNotes;
     }
