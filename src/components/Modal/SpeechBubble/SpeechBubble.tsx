@@ -7,15 +7,22 @@ interface Props {
   left?: boolean;
 }
 
+const minMargin = 16
+
+/** A type of modal to confer information that wouldn't be printed in our simulated paper */
 export const SpeechBubble = ({ children, left, right }: Props) => {
   if (left === right) console.warn('SpeechBubble ought to have either `left` or `right` set to true');
 
   const contentRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    if (contentRef.current)
-      // dynamic margins work better with round containers
-      contentRef.current.style.margin = `${(contentRef.current?.getBoundingClientRect()?.width ?? 0) / 5}px`
+    if (!contentRef.current) return;
+
+    // dynamic margins work better with round containers
+    const boundingClient = contentRef.current?.getBoundingClientRect();
+    const marginX = (boundingClient?.width ?? 0) / 5;
+    const marginY = (boundingClient?.height ?? 0) / 5;
+    contentRef.current.style.margin = `${Math.max(minMargin, marginY)}px ${Math.max(minMargin, marginX)}px`;
   }, []);
 
   const classModifier = useMemo(() => left ? 'left' : right ? 'right' : '', [left, right])

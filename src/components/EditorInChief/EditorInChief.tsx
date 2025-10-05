@@ -1,10 +1,14 @@
 import {useMemo} from "react";
-import {nostrClient} from "../../store/nostr/client.ts";
+import useNostr from "../../store/nostr/useNostr.ts";
+import "./EditorInChief.css";
+import {UserImage} from "../UserImage/UserImage.tsx";
 
+/** Image of the current user, future gateway to account settings */
 export const EditorInChief = () => {
-  const user = useMemo(() => nostrClient.ndk.activeUser, []);
+  const {ndk} = useNostr();
+  const user = useMemo(() => ndk?.activeUser, [ndk?.activeUser]);
 
   return <div className="editorInChief">
-    <img src={user?.profile?.picture} alt="Image" />
-  </div>
-}
+    <UserImage user={user} />
+  </div>;
+};

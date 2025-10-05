@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import type {State} from "../store.ts";
 import {useCallback, useMemo} from "react";
 import NDK, {NDKPrivateKeySigner} from "@nostr-dev-kit/ndk";
-import {addNotes, setNotes} from "../notes/notes.ts";
+import {addNotes, printLatest, setNotes} from "../notes/notes.ts";
 import {setConnected, setConnecting} from "./nostr.ts";
 import {nostrClient} from "./client.ts";
 import {getDefaultFilters} from "./utility/getDefaultFilters.ts";
@@ -26,13 +26,18 @@ const useNostr = () => {
         explicitRelayUrls: ["wss://relay.primal.net"],
         signer
       });
+
+      ndk.cacheAdapter?.clear?.()
+
       await ndk.connect();
 
+      /* TODO: Not entirely happy with simply using localStorage but that's literally how Primal does it */
       localStorage.setItem("nsec", nsec);
 
-      const filters = await getDefaultFilters(ndk)
+      const filters = await getDefaultFilters(ndk);
       const initialNotes = Array.from(await ndk.fetchEvents(filters));
       dispatch(setNotes(await Promise.all(initialNotes.map(mapNote))));
+      dispatch(printLatest());
 
       const textNoteSubscription = ndk.subscribe(
         filters,
@@ -42,6 +47,8 @@ const useNostr = () => {
           onEose: () => console.log("Text note stream has run dry")
         }
       );
+
+      await ndk.activeUser?.fetchProfile({}, true);
 
       nostrClient.ndk = ndk;
       nostrClient.textNoteSubscription = textNoteSubscription;

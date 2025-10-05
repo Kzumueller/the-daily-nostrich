@@ -4,6 +4,7 @@ import useNostr from "../../store/nostr/useNostr.ts";
 import {useCallback, useState} from "react";
 import {NDKPrivateKeySigner} from "@nostr-dev-kit/ndk";
 
+/** Strikes up a conversation using speech bubbles for the user to enter or create an nsec */
 export const LoginModal = () => {
   const {connect, connecting} = useNostr();
   const [nsec, setNsec] = useState("");
@@ -14,9 +15,9 @@ export const LoginModal = () => {
 
   return <ModalContainer>
     <SpeechBubble left>
-      <div style={{maxWidth: 250, textAlign: "center"}}>
-        Whose acquaintance do I have the pleasure to make?
-      </div>
+        Whose acquaintance do I
+        <br />
+        have the pleasure of making?
     </SpeechBubble>
 
     <SpeechBubble right>

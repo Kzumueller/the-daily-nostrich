@@ -1,0 +1,21 @@
+.newsBoy {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.newsBoy .speechBubble__content {
+  font-size: .8rem;
+}
+
+@media (max-width: 670px) {
+  .newsBoy {
+    top: 2%;
+    left: 15%;
+  }
+}

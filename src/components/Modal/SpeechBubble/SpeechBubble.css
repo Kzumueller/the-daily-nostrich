@@ -1,21 +1,25 @@
+:root {
+  --bubble-border: 2px solid #111
+}
+
 .speechBubble {
   position: relative;
   max-width: 75dvw;
   max-height: 75dvh;
   width: fit-content;
   background: white;
-  border: 3px solid black;
+  border: var(--bubble-border);
   border-radius: 50%;
   box-shadow: 2px 2px 2px #333;
   font-size: 3rem;
 }
 
 .speechBubble--left {
-  margin-right: 20%;
+  margin-right: 10%;
 }
 
 .speechBubble--right {
-  margin-left: 20%;
+  margin-left: 10%;
 }
 
 .speechBubble__content, .speechBubble__content * {
@@ -24,14 +28,15 @@
   justify-content: center;
   align-items: center;
   font-size: 1.3rem;
-  gap: 4px
+  gap: 4px;
+  text-align: center;
 }
 
 .speechBubble__arrowBit {
   position: absolute;
   bottom: 5%;
   background: white;
-  border-bottom: 3px solid black;
+  border-bottom: var(--bubble-border);
   width: 25%;
   height: 25%;
   z-index: -1;
@@ -39,12 +44,12 @@
 
 .speechBubble__arrowBit--left {
   transform: skewX(-10deg);
-  border-left: 3px solid black;
+  border-left: var(--bubble-border);
   left: 5%;
 }
 
 .speechBubble__arrowBit--right {
   transform: skewX(10deg);
-  border-right: 3px solid black;
+  border-right: var(--bubble-border);
   right: 5%;
 }

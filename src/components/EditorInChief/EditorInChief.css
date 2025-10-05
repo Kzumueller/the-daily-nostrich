@@ -1,0 +1,5 @@
+.editorInChief {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 8px;
+}

@@ -4,3 +4,10 @@
       local("Chomsky"),
       url("Chomsky.otf") format("opentype");
 }
+
+@font-face {
+  font-family: "RadioNewsman";
+  src:
+      local("RadioNewsman"),
+      url("RadioNewsman.ttf") format("truetype");
+}
