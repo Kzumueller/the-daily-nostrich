@@ -4,6 +4,7 @@
   left: 0;
   width: 100dvw;
   height: 100dvh;
+  z-index: 2;
   background: var(--mahogany);
   display: flex;
   flex-direction: column;
