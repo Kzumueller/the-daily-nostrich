@@ -30,6 +30,7 @@ and navigate to the local URL shown in your console.
 - Support for browser extensions and possible nsec bunkers
 - Exporting npub/nsec
 - Settings to optionally disable the sepia filter on everything
+- Improved note layout
 - Posting content (as a "letter to the editor")
 - Removing the user's own reactions
 - Zaps, reposts, quotes
