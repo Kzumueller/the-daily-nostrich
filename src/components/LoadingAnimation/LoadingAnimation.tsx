@@ -3,6 +3,7 @@ import {SpeechBubble} from "../Modal/SpeechBubble/SpeechBubble.tsx";
 import {ModalContainer} from "../Modal/ModalContainer.tsx";
 import {usePrintedNotes} from "../../store/notes/usePrintedNotes.ts";
 
+/** Overlay containing various messages from all over the app, displayed as speech bubbles */
 export const LoadingAnimation = () => {
   const notes = usePrintedNotes();
   const {setupTakingLonger, followingAuthors} = useInteractiveLog();

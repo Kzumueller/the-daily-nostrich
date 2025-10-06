@@ -15,9 +15,9 @@ export const LoginModal = () => {
 
   return <ModalContainer>
     <SpeechBubble left>
-        Whose acquaintance do I
-        <br />
-        have the pleasure of making?
+      Whose acquaintance do I
+      <br/>
+      have the pleasure of making?
     </SpeechBubble>
 
     <SpeechBubble right>

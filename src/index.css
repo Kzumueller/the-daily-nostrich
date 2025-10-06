@@ -44,16 +44,3 @@ button:disabled {
 button:hover:not(:disabled) {
   color: white
 }
-
-.userImage {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid black;
-  filter: sepia(100%);
-}
-
-.userImage:hover {
-  filter: none;
-}

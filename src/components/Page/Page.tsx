@@ -9,6 +9,6 @@ export const Page = () => {
   if (notes.length === 0) return null;
 
   return <div className="page">
-    {notes.map(note => <Note key={note.id} note={note} />)}
+    {notes.map(note => <Note key={note.id} note={note}/>)}
   </div>;
 };

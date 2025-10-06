@@ -14,7 +14,7 @@ export const Note = ({note}: Props) => {
   const {ndk, like} = useNostr();
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const { reactions, fetchReactions, hasReacted } = useReactions(note)
+  const {reactions, fetchReactions, hasReacted} = useReactions(note);
 
   /** replaces URLs with anchor tags in situ */
   useLayoutEffect(() => {
