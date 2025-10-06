@@ -1,13 +1,25 @@
 .editorInChief {
+  position: relative;
   display: flex;
-  justify-content: flex-start;
-  padding-left: 16px;
+  justify-content: flex-end;
+  padding-right: 16px;
   padding-bottom: 8px;
+}
+
+.editorInChief__bubbleContainer {
+  position: absolute;
+  right: 64px;
+  bottom: 16px;
+  z-index: 2;
 }
 
 @media (max-width: 670px) {
   .editorInChief {
     padding-left: 8px;
     padding-bottom: 0;
+  }
+
+  .editorInChief__bubbleContainer {
+    bottom: 0;
   }
 }

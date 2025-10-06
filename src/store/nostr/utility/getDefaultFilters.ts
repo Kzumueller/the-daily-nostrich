@@ -1,6 +1,7 @@
 import type { NDKFilter } from "@nostr-dev-kit/ndk";
 import type NDK from "@nostr-dev-kit/ndk";
 import {setUpDefaultFollows} from "./setUpDefaultFollows.ts";
+import {getStartDate} from "./getStartDate.ts";
 
 /**
  * returns filters to fetch and subscribe to events
@@ -16,14 +17,10 @@ export const getDefaultFilters = async (ndk: NDK) => {
     follows = await ndk.activeUser?.followSet();
   }
 
-  const now = new Date();
-  now.setDate(now.getDate() - 1);
-  now.setHours(0, 0, 0, 0);
-  const since = now.getTime() / 1e3;
-
   return {
     kinds: [1/*, 30023*/],
     authors: Array.from(follows ?? []),
-    since
+    since: getStartDate(),
+    limit: 200
   } as NDKFilter;
 };

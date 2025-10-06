@@ -1,5 +1,5 @@
 .note {
-  width: 60%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -19,10 +19,17 @@
   filter: sepia(100%);
 }
 
-.note__author {
+.note__metaRow {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.note__metaText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .note__authorName {
@@ -31,6 +38,16 @@
 
 .note__timestamp {
   font-size: .8rem;
+}
+
+.note__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.note__like {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .note__media {

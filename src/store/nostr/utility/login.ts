@@ -5,16 +5,8 @@ import { transformEvent } from "./transformEvent.ts";
 import { nostrClient } from "../client.ts";
 import { setConnected, setConnecting } from "../nostr.ts";
 import { store } from "../../store.ts";
-
-/** stolen from Primal */
-const explicitRelayUrls = [
-  "wss://at.nostrworks.com",
-  "wss://nostr-verified.wellorder.net",
-  "wss://nostr.hekster.org",
-  "wss://relay.nostr.band",
-  "wss://relay.primal.net",
-  "wss://relay.satlantis.io"
-]
+import {setSetupTakingLonger} from "../../interactiveLog/interactiveLog.ts";
+import {explicitRelayUrls} from "./explicitRelayUrls.ts";
 
 /**
  * connects via nsec, fetches today's notes by follows, and subscribes using the same filters
@@ -23,6 +15,12 @@ export const login = async (nsec: string) => {
   store.dispatch(setConnecting(true));
 
   try {
+    // shows a little message if the setup takes longer
+    const setupTimeout = setTimeout(
+      () => store.dispatch(setSetupTakingLonger(true)),
+      5_000
+    )
+
     const signer = new NDKPrivateKeySigner(nsec);
 
     const ndk = new NDK({
@@ -42,10 +40,10 @@ export const login = async (nsec: string) => {
     const initialEvents = Array.from(await ndk.fetchEvents(filters));
     const initialNotes = await Promise.all(initialEvents.map(transformEvent))
 
-    console.log({ initialNotes })
-
     store.dispatch(setNotes(initialNotes));
     store.dispatch(printLatest());
+
+    clearTimeout(setupTimeout)
 
     const textNoteSubscription = ndk.subscribe(
       filters,

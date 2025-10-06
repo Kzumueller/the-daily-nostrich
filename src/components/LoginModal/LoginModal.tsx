@@ -1,6 +1,6 @@
 import {ModalContainer} from "../Modal/ModalContainer.tsx";
 import {SpeechBubble} from "../Modal/SpeechBubble/SpeechBubble.tsx";
-import useNostr from "../../store/nostr/useNostr.ts";
+import {useNostr} from "../../store/nostr/useNostr.ts";
 import {useCallback, useState} from "react";
 import {NDKPrivateKeySigner} from "@nostr-dev-kit/ndk";
 

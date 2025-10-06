@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import notes from './notes/notes'
 import nostr from './nostr/nostr'
+import interactiveLog from './interactiveLog/interactiveLog'
 
 export const store = configureStore({
   reducer: {
     notes,
-    nostr
+    nostr,
+    interactiveLog
   },
 })
 

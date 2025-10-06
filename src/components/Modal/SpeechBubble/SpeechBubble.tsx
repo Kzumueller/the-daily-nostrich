@@ -7,7 +7,8 @@ interface Props {
   left?: boolean;
 }
 
-const minMargin = 16
+const minMarginY = 16;
+const minMarginX = 8;
 
 /** A type of modal to confer information that wouldn't be printed in our simulated paper */
 export const SpeechBubble = ({ children, left, right }: Props) => {
@@ -24,7 +25,7 @@ export const SpeechBubble = ({ children, left, right }: Props) => {
     const boundingClient = contentRef.current?.getBoundingClientRect();
     const marginX = (boundingClient?.width ?? 0) / 4;
     const marginY = (boundingClient?.height ?? 0) / 4;
-    contentRef.current.style.margin = `${Math.max(minMargin, marginY)}px ${Math.max(minMargin, marginX)}px`;
+    contentRef.current.style.margin = `${Math.max(minMarginY, marginY)}px ${Math.max(minMarginX, marginX)}px`;
   }, []);
 
   const classModifier = useMemo(() => left ? 'left' : right ? 'right' : '', [left, right])

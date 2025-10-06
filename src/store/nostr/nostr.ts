@@ -25,16 +25,9 @@ export const nostrSlice = createSlice({
     },
     setConnecting: (state, action: PayloadAction<boolean>) => {
       state.connecting = action.payload;
-    },
-    setNDK: (state, action: PayloadAction<NDK>) => {
-      state.ndk = action.payload;
-    },
-    setTextNoteSubscription: (state, action: PayloadAction<NDKSubscription>) => {
-      if (state.textNoteSubscription) state.textNoteSubscription.stop()
-      state.textNoteSubscription = action.payload;
     }
   }
 });
 
-export const {setNDK, setTextNoteSubscription, setConnected, setConnecting} = nostrSlice.actions;
+export const {setConnected, setConnecting} = nostrSlice.actions;
 export default nostrSlice.reducer;
