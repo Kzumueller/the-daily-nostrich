@@ -2,6 +2,8 @@ import type { NDKFilter } from "@nostr-dev-kit/ndk";
 import type NDK from "@nostr-dev-kit/ndk";
 import {setUpDefaultFollows} from "./setUpDefaultFollows.ts";
 import {getStartDate} from "./getStartDate.ts";
+import {store} from "../../store.ts";
+import {setFollowingAuthors} from "../../interactiveLog/interactiveLog.ts";
 
 /**
  * returns filters to fetch and subscribe to events
@@ -16,6 +18,8 @@ export const getDefaultFilters = async (ndk: NDK) => {
     await setUpDefaultFollows(ndk)
     follows = await ndk.activeUser?.followSet();
   }
+
+  store.dispatch(setFollowingAuthors(0))
 
   return {
     kinds: [1/*, 30023*/],

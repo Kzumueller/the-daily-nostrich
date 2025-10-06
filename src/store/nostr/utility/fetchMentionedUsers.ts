@@ -12,11 +12,15 @@ export const fetchMentionedUsers = async (event: NDKEvent) => {
   const mentions: MentionMap = {};
 
   for (const id of ids) {
-    const isNpub = id.startsWith("npub");
-    const user = event.ndk!.getUser(isNpub ? id : { nprofile: id });
-    await user.fetchProfile({}, true);
+    try {
+      const isNpub = id.startsWith("npub");
+      const user = event.ndk!.getUser(isNpub ? id : { nprofile: id });
+      await user.fetchProfile({}, true);
 
-    mentions[id] = { pubkey: user.pubkey, profile: user.profile };
+      mentions[id] = { pubkey: user.pubkey, profile: user.profile };
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return mentions;

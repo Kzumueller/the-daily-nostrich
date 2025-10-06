@@ -1,4 +1,4 @@
-import {useCallback, useLayoutEffect, useRef} from "react";
+import {useCallback, useLayoutEffect, useMemo, useRef} from "react";
 import {UserImage} from "../UserImage/UserImage.tsx";
 import "./Note.css";
 import type {RichNote} from "../../store/notes/RichNote.ts";
@@ -32,8 +32,10 @@ export const Note = ({note}: Props) => {
     await fetchReactions();
   }, [fetchReactions, like, ndk, note]);
 
+  const needsWrap = useMemo(() => note.images.length + note.videos.length > 1, [note])
+
   return <div className="note">
-    <div className="note__layout">
+    <div className="note__layout" style={{ flexWrap: needsWrap ? 'wrap' : 'nowrap' }}>
       {note.images.map(src => <img key={src} className="note__media" src={src} alt="image"/>)}
       {note.videos.map(src => <video controls muted key={src} className="note__media" src={src}/>)}
       <div ref={contentRef} className="note__content">{note.text}</div>

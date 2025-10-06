@@ -28,7 +28,6 @@ export const notesSlice = createSlice({
     /** sets allNotes, filtered, deduplicated, and sorted */
     setNotes: (state, action: PayloadAction<NoteInput>) => {
       state.allNotes = filterNotes(action.payload).sort(sortNotes);
-      console.log('set Notes', filterNotes(action.payload).sort(sortNotes))
     },
     /** Adds the given payload to allNotes, filters and sorts */
     addNotes: (state, action: PayloadAction<NoteInput>) => {
